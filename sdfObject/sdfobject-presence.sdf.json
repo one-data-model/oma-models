@@ -1,0 +1,96 @@
+{
+  "info": {
+    "title": "OMA/IPSO Presence (Object ID 3302)",
+    "version": "2022-02-22",
+    "copyright": "Copyright 2019 Open Mobile Alliance.",
+    "license": "BSD-3-Clause"
+  },
+  "namespace": {
+    "oma": "https://onedm.org/ecosystem/oma"
+  },
+  "defaultNamespace": "oma",
+  "sdfObject": {
+    "Presence": {
+      "label": "Presence",
+      "description": "Presence sensor with digital sensing, optional delay parameters",
+      "sdfProperty": {
+        "Digital_Input_State": {
+          "label": "Digital Input State",
+          "description": "The current state of a digital input.",
+          "writable": false,
+          "type": "boolean"
+        },
+        "Digital_Input_Counter": {
+          "label": "Digital Input Counter",
+          "description": "The cumulative value of active state detected.",
+          "writable": false,
+          "type": "integer"
+        },
+        "Sensor_Type": {
+          "label": "Sensor Type",
+          "description": "The type of the sensor (for instance PIR type).",
+          "writable": false,
+          "type": "string"
+        },
+        "Busy_to_Clear_delay": {
+          "label": "Busy to Clear delay",
+          "description": "Delay from the detection state to the clear state in ms.",
+          "type": "integer",
+          "unit": "ms"
+        },
+        "Clear_to_Busy_delay": {
+          "label": "Clear to Busy delay",
+          "description": "Delay from the clear state to the busy state in ms.",
+          "type": "integer",
+          "unit": "ms"
+        },
+        "Application_Type": {
+          "label": "Application Type",
+          "description": "The application type of the sensor or actuator as a string depending on the use case.",
+          "type": "string"
+        },
+        "Timestamp": {
+          "label": "Timestamp",
+          "description": "The timestamp of when the measurement was performed.",
+          "writable": false,
+          "type": "number",
+          "sdfType": "unix-time"
+        },
+        "Fractional_Timestamp": {
+          "label": "Fractional Timestamp",
+          "description": "Fractional part of the timestamp when sub-second precision is used (e.g., 0.23 for 230 ms).",
+          "writable": false,
+          "type": "number",
+          "unit": "s",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "Measurement_Quality_Indicator": {
+          "label": "Measurement Quality Indicator",
+          "description": "Measurement quality indicator reported by a smart sensor. 0: UNCHECKED No quality checks were done because they do not exist or can not be applied. 1: REJECTED WITH CERTAINTY The measured value is invalid. 2: REJECTED WITH PROBABILITY The measured value is likely invalid. 3: ACCEPTED BUT SUSPICIOUS The measured value is likely OK. 4: ACCEPTED The measured value is OK. 5-15: Reserved for future extensions. 16-23: Vendor specific measurement quality.",
+          "writable": false,
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 23
+        },
+        "Measurement_Quality_Level": {
+          "label": "Measurement Quality Level",
+          "description": "Measurement quality level reported by a smart sensor. Quality level 100 means that the measurement has fully passed quality check algorithms. Smaller quality levels mean that quality has decreased and the measurement has only partially passed quality check algorithms. The smaller the quality level, the more caution should be used by the application when using the measurement. When the quality level is 0 it means that the measurement should certainly be rejected.",
+          "writable": false,
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      },
+      "sdfAction": {
+        "Digital_Input_Counter_Reset": {
+          "label": "Digital Input Counter Reset",
+          "description": "Reset the Counter value."
+        }
+      },
+      "sdfRequired": [
+        "#/sdfObject/Presence/sdfProperty/Digital_Input_State"
+      ]
+    }
+  }
+}

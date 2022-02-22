@@ -1,0 +1,87 @@
+{
+  "info": {
+    "title": "OMA/IPSO Load Control (Object ID 3310)",
+    "version": "2022-02-22",
+    "copyright": "Copyright 2019 Open Mobile Alliance.",
+    "license": "BSD-3-Clause"
+  },
+  "namespace": {
+    "oma": "https://onedm.org/ecosystem/oma"
+  },
+  "defaultNamespace": "oma",
+  "sdfObject": {
+    "Load_Control": {
+      "label": "Load Control",
+      "description": "This Object is used for demand-response load control and other load control in automation application (not limited to power).",
+      "sdfProperty": {
+        "Event_Identifier": {
+          "label": "Event Identifier",
+          "description": "The event identifier as a string.",
+          "type": "string"
+        },
+        "Start_Time": {
+          "label": "Start Time",
+          "description": "Time when the event started.",
+          "type": "number",
+          "sdfType": "unix-time"
+        },
+        "Duration_In_Min": {
+          "label": "Duration In Min",
+          "description": "The duration of the event in minutes.",
+          "type": "integer",
+          "unit": "min"
+        },
+        "Criticality_Level": {
+          "label": "Criticality Level",
+          "description": "The criticality of the event. The device receiving the event will react in an appropriate fashion for the device.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "Avg_Load_AdjPct": {
+          "label": "Avg Load AdjPct",
+          "description": "Defines the maximum energy usage of the receiving device, as a percentage of the device's normal maximum energy usage.",
+          "type": "integer",
+          "unit": "/100",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "Duty_Cycle": {
+          "label": "Duty Cycle",
+          "description": "Defines the duty cycle for the load control event, i.e, what percentage of time the receiving device is allowed to be on.",
+          "type": "integer",
+          "unit": "/100",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "Application_Type": {
+          "label": "Application Type",
+          "description": "The application type of the sensor or actuator as a string depending on the use case.",
+          "type": "string"
+        },
+        "Timestamp": {
+          "label": "Timestamp",
+          "description": "The timestamp of when the measurement was performed.",
+          "writable": false,
+          "type": "number",
+          "sdfType": "unix-time"
+        },
+        "Fractional_Timestamp": {
+          "label": "Fractional Timestamp",
+          "description": "Fractional part of the timestamp when sub-second precision is used (e.g., 0.23 for 230 ms).",
+          "writable": false,
+          "type": "number",
+          "unit": "s",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "sdfAction": {},
+      "sdfRequired": [
+        "#/sdfObject/Load_Control/sdfProperty/Event_Identifier",
+        "#/sdfObject/Load_Control/sdfProperty/Start_Time",
+        "#/sdfObject/Load_Control/sdfProperty/Duration_In_Min"
+      ]
+    }
+  }
+}
